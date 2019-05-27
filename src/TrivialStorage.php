@@ -14,6 +14,7 @@ class TrivialStorage {
 
     public function create($key, $item) {
         $this->data[$key] = $item;
+        $this->save();
     } 
 
     public function read($key) {
@@ -30,6 +31,7 @@ class TrivialStorage {
 
     public function update($key, $item) {
         $this->data[$key] = $item;
+        $this->save();
     }
 
     public function delete($key) {
