@@ -6,6 +6,9 @@ class TrivialStorage {
     public function __construct($filename)
     {
         $this->filename = $filename;
+        if ( !file_exists($this->filename) ) {
+            file_put_contents($this->filename, '[]');
+        }
         $this->load();
     }
 
