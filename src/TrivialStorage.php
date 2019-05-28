@@ -6,10 +6,11 @@ class TrivialStorage {
     public function __construct($filename)
     {
         $this->filename = $filename;
-        if ( !file_exists($this->filename) ) {
-            file_put_contents($this->filename, '[]');
+        if ( file_exists($this->filename) ) {
+            $this->load();
+            return;
         }
-        $this->load();
+        $this->save();
     }
 
     public function create($key, $item) {
@@ -48,14 +49,14 @@ class TrivialStorage {
         $this->save();
     }
 
-    private $filename = 'data.json';
-    private $data = [];
+    protected $filename = 'data.json';
+    protected $data = [];
 
-    private function load() {
+    protected function load() {
         $this->data = json_decode(file_get_contents($this->filename));
     }
 
-    private function save() {
+    protected function save() {
         file_put_contents($this->filename, json_encode($this->data));
     }
 }
