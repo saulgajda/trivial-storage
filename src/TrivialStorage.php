@@ -53,7 +53,7 @@ class TrivialStorage {
     protected $data = [];
 
     protected function load() {
-        $this->data = json_decode(file_get_contents($this->filename));
+        $this->data = json_decode(file_get_contents($this->filename), true);
     }
 
     protected function save() {
